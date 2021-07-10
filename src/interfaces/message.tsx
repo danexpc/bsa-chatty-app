@@ -4,6 +4,6 @@ export interface IMessage {
     avatar: string,
     user: string,
     text: string,
-    createdAt: string,
-    editedAt?: string
+    createdAt: Date,
+    editedAt?: Date
 }
