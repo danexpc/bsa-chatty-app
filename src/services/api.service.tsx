@@ -5,12 +5,12 @@ class ApiService {
         this.url = url
     }
 
-    async fetchPosts() {
+    async fetchMessages() {
         try {
             const request = new Request(`${this.url}`, {
                 method: 'get'
             })
-            return fetchRequest(request)
+            return await fetchRequest(request)
         } catch (error) {
             console.error(error)
         }
