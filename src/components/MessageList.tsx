@@ -8,11 +8,11 @@ interface MessageListProps {
 export const MessageList: React.FC<MessageListProps> = () => {
     return (
         <div className="message-list">
-            <span className="messages-divider"/>
+            <div className="message-divider">Yesterday</div>
             <Message/>
             <Message/>
             <Message/>
-            <span className="messages-divider"/>
+            <div className="message-divider">Today</div>
             <Message/>
             <OwnMessage/>
             <Message/>

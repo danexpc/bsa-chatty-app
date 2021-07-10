@@ -101,3 +101,25 @@
 .message-delete:hover {
     color: #6c1515;
 }
+
+.message-divider  {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #262626;
+}
+
+.message-divider::before,
+.message-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #262626;
+}
+
+.message-divider:not(:empty)::before {
+    margin-right: .25em;
+}
+
+.message-divider:not(:empty)::after {
+    margin-left: .25em;
+}
