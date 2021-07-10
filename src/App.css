@@ -64,4 +64,40 @@
 
 .message-input-button {
     width: 8rem;
+    background-color: #466afc;
+}
+
+.message-input-button:hover {
+    background-color: #2750ff;
+}
+
+.own-message {
+    position: relative;
+    width: max-content;
+    border: none;
+    right: -49.7%;
+    background-color: #e6ebfd;
+
+}
+
+.message-edit {
+    font-size: 12px;
+    background-color: #e6ebfd;
+    border: none;
+    color: #262626;
+}
+
+.message-delete {
+    font-size: 12px;
+    background-color: #e6ebfd;
+    border: none;
+    color: #262626;
+}
+
+.message-edit:hover {
+    color: #635b5b;
+}
+
+.message-delete:hover {
+    color: #6c1515;
 }
