@@ -3,6 +3,8 @@
     flex-direction: column;
     gap: 1rem !important;
     background-color: #F4F7F8;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .message-user-avatar {
@@ -52,4 +54,14 @@
     right: 1.5rem;
     font-size: 12px;
 
+}
+
+.message-input {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.message-input-button {
+    width: 8rem;
 }
