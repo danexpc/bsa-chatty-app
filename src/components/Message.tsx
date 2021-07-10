@@ -3,19 +3,28 @@ import {Card} from "react-bootstrap";
 import {FaThumbsUp} from "react-icons/all";
 
 interface MessageProps {
+    id: string,
+    userId: string,
+    avatar: string,
+    user: string,
+    text: string,
+    createdAt: string,
+    editedAt?: string
 }
 
-export const Message: React.FC<MessageProps> = () => {
+export const Message: React.FC<MessageProps> = (props) => {
+    const {avatar, user, text, createdAt} = props;
+
     return (
         <Card className="message">
             <Card.Body className="message-body">
                 <div className="message-metadata d-flex">
-                    <Card.Img src="https://unsplash.it/36/36?gravity=center" className="message-user-avatar" />
-                    <Card.Title className="message-user-name">Dan Smahliuk</Card.Title>
-                    <Card.Text className="message-time">14:32</Card.Text>
+                    <Card.Img src={avatar} className="message-user-avatar" />
+                    <Card.Title className="message-user-name">{user}</Card.Title>
+                    <Card.Text className="message-time">{createdAt}</Card.Text>
                 </div>
                 <Card.Text className="message-text">
-                    With supporting text below as a natural lead-in to additional content.
+                    {text}
                 </Card.Text>
                 <button className="message-like">
                     <FaThumbsUp />
