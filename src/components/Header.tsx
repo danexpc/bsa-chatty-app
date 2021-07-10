@@ -6,7 +6,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = () => {
     return (
-            <Navbar className="header mt-5">
+            <Navbar className="header mt-4">
                 <Container className="align-items-center">
                     <Navbar.Brand href="#home" className="mr-5 header-title">My Chat</Navbar.Brand>
                     <Navbar.Collapse className="justify-content-start">

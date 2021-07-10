@@ -1,3 +1,7 @@
+body {
+    overflow-y: hidden;
+}
+
 .message-list {
     display: flex;
     flex-direction: column;
@@ -5,6 +9,10 @@
     background-color: #F4F7F8;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    max-height: 70vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom: 1rem;
 }
 
 .message-user-avatar {
@@ -62,6 +70,10 @@
     margin-bottom: 2rem;
 }
 
+.message-input-text:focus {
+    box-shadow: none;
+}
+
 .message-input-button {
     width: 8rem;
     background-color: #466afc;
@@ -70,6 +82,11 @@
 .message-input-button:hover {
     background-color: #2750ff;
 }
+
+.message-input-button:focus {
+    box-shadow: none;
+}
+
 
 .own-message {
     position: relative;
