@@ -5,7 +5,7 @@ import {MessageList} from "./components/MessageList";
 import {MessageInput} from "./components/MessageInput";
 import {apiService} from "./services/api.service";
 import {IMessage} from "./interfaces/message";
-
+import {transformService} from "./services/transform.service";
 
 class App extends Component<any, any> {
     state = {
@@ -18,7 +18,8 @@ class App extends Component<any, any> {
 
     renderMessages = async() => {
         try {
-            const messages: IMessage[] = await apiService.fetchMessages();
+            const messages: IMessage[] = transformService.transformAll(await apiService.fetchMessages());
+
             this.setState({
                 messages: messages
             });
@@ -28,13 +29,20 @@ class App extends Component<any, any> {
     }
 
     render() {
+        if (this.state.messages.length !== 0) {
+            console.log(this.state.messages)
+            return (
+                <div className="container">
+                    <Header/>
+                    <MessageList messages={this.state.messages}/>
+                    <MessageInput/>
+                </div>
+            );
+        }
         return (
-            <div className="container">
-                <Header/>
-                <MessageList messages={this.state.messages}/>
-                <MessageInput/>
-            </div>
-        );
+            <></>
+        )
+
     }
 
 }

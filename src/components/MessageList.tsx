@@ -13,8 +13,9 @@ export const MessageList: React.FC<MessageListProps> = (props) => {
             {
                 props.messages.map(message =>
                     <Message key={message.id}
-                        id={message.id} userId={message.userId} avatar={message.avatar} user={message.user}
-                        text={message.text} createdAt={message.createdAt}/>
+                             id={message.id} userId={message.userId} avatar={message.avatar} user={message.user}
+                             text={message.text}
+                             createdAt={message.createdAt.getHours() + ":" + message.createdAt.getMinutes()}/>
                 )
             }
         </div>
