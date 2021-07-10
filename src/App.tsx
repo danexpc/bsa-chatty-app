@@ -16,12 +16,12 @@ class App extends Component<any, any> {
         this.renderMessages();
     }
 
-    renderMessages = async() => {
+    renderMessages = async () => {
         try {
             const messages: IMessage[] = transformService.transformAll(await apiService.fetchMessages());
 
             this.setState({
-                messages: messages
+                messages: messages.sort((message1, message2) => message1.createdAt > message2.createdAt ? 1 : -1)
             });
         } catch (err) {
             console.log(err);
@@ -30,10 +30,17 @@ class App extends Component<any, any> {
 
     render() {
         if (this.state.messages.length !== 0) {
-            console.log(this.state.messages)
+            const participants: string[] = []
+            this.state.messages.forEach(message => {
+                if (!participants.includes(message['user'])) {
+                    participants.push(message['user'])
+                }
+            })
+            const lastMessageDate: Date = this.state.messages[this.state.messages.length - 1]['createdAt'];
             return (
                 <div className="container">
-                    <Header/>
+                    <Header participantsCount={participants.length} messagesCount={this.state.messages.length}
+                            lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
                     <MessageList messages={this.state.messages}/>
                     <MessageInput/>
                 </div>
