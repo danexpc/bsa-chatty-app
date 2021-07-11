@@ -140,7 +140,7 @@ export default class Chat extends Component<IChatProps, IChatState> {
         const lastMessageDate: Date = getLastMessageDate(messages)
 
         return (
-            <div className="container">
+            <div className="chat container">
                 <Header chatName={'My Chat'} participantsCount={numberUniqueParticipants}
                         messagesCount={messages.length}
                         lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
