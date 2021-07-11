@@ -10,10 +10,12 @@ interface MessageProps {
     text: string,
     createdAt: string,
     editedAt?: string
+    liked: boolean
+    onLike: () => void
 }
 
 export const Message: React.FC<MessageProps> = (props) => {
-    const {avatar, user, text, createdAt} = props;
+    const {avatar, user, text, createdAt, liked} = props;
 
     return (
         <Card className="message">
@@ -26,7 +28,7 @@ export const Message: React.FC<MessageProps> = (props) => {
                 <Card.Text className="message-text">
                     {text}
                 </Card.Text>
-                <button className="message-like">
+                <button className={`message-like ${liked ? 'like' :  ''}`} onClick={props.onLike}>
                     <FaThumbsUp />
                 </button>
             </Card.Body>

@@ -5,5 +5,6 @@ export interface IMessage {
     user: string,
     text: string,
     createdAt: Date,
-    editedAt?: Date
+    editedAt?: Date,
+    liked: boolean
 }

@@ -54,13 +54,25 @@ class Chat extends Component<ChatProps, IState> {
             avatar: "https://unsplash.it/36/36?gravity=center",
             user: "Dan",
             text: message,
-            createdAt: new Date()
+            createdAt: new Date(),
+            liked: false
         });
         this.setState(
             {
                 messages: newMessages
             }
         )
+    }
+
+    toggleLike = (id: string) => {
+        let messages = this.state.messages;
+        const index = messages.findIndex(message => message.id === id);
+        if (messages[index]) {
+            messages[index].liked = !messages[index]?.liked;
+            this.setState({
+                messages: messages
+            })
+        }
     }
 
     render() {
@@ -77,7 +89,7 @@ class Chat extends Component<ChatProps, IState> {
                     <Header chatName={'My Chat'} participantsCount={participants.length}
                             messagesCount={this.state.messages.length}
                             lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
-                    <MessageList messages={this.state.messages}/>
+                    <MessageList onLike={this.toggleLike} messages={this.state.messages}/>
                     <MessageInput onAddMessage={this.addMessage}/>
                 </div>
             );

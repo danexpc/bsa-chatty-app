@@ -9,7 +9,8 @@ class TransformService {
             user: message.user,
             text: message.text,
             createdAt: new Date(message.createdAt),
-            editedAt: message.editedAt ? new Date(message.editedAt) : undefined
+            editedAt: message.editedAt ? new Date(message.editedAt) : undefined,
+            liked: false
         }
 
     }

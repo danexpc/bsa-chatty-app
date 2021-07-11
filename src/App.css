@@ -54,8 +54,12 @@ body {
     color: #262626;
 }
 
+.like {
+    color: #c71b1b;;
+}
+
 .message-like:hover {
-    color: #d72a2a;
+    color: #d43a3a;
 }
 
 .message-time {

@@ -5,6 +5,7 @@ import {OwnMessage} from "./OwnMessage";
 
 interface MessageListProps {
     messages: IMessage[]
+    onLike: (id: string) => void
 }
 
 export const MessageList: React.FC<MessageListProps> = (props) => {
@@ -21,7 +22,9 @@ export const MessageList: React.FC<MessageListProps> = (props) => {
                         return <Message key={message.id}
                                         id={message.id} userId={message.userId} avatar={message.avatar} user={message.user}
                                         text={message.text}
-                                        createdAt={message.createdAt.getHours() + ":" + message.createdAt.getMinutes()}/>
+                                        createdAt={message.createdAt.getHours() + ":" + message.createdAt.getMinutes()}
+                                        liked={message.liked}
+                                        onLike={() => props.onLike(message.id)}/>
                     }
 
                     }
