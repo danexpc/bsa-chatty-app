@@ -8,6 +8,7 @@ import {IMessage} from "../interfaces/message";
 import {transformService} from "../services/transform.service";
 
 import { v4 as uuidv4 } from "uuid";
+import {Preloader} from "./Preloader";
 
 interface ChatProps {
     url: string
@@ -17,7 +18,8 @@ interface IState {
     messages: IMessage[],
     isEdit: boolean,
     editingMessage: string,
-    editingMessageId: string
+    editingMessageId: string,
+    loading: boolean
 }
 
 
@@ -32,7 +34,8 @@ class Chat extends Component<ChatProps, IState> {
             messages: [],
             isEdit: false,
             editingMessage: '',
-            editingMessageId: ''
+            editingMessageId: '',
+            loading: true
         }
     }
 
@@ -45,7 +48,8 @@ class Chat extends Component<ChatProps, IState> {
             const messages: IMessage[] = transformService.transformAll(await this.apiService.fetchMessages());
 
             this.setState({
-                messages: messages.sort((message1, message2) => message1.createdAt > message2.createdAt ? 1 : -1)
+                messages: messages.sort((message1, message2) => message1.createdAt > message2.createdAt ? 1 : -1),
+                loading: false
             });
         } catch (err) {
             console.log(err);
@@ -118,27 +122,26 @@ class Chat extends Component<ChatProps, IState> {
     }
 
     render() {
-        if (this.state.messages.length !== 0) {
-            const participants: string[] = []
-            this.state.messages.forEach(message => {
-                if (!participants.includes(message['userId'])) {
-                    participants.push(message['userId'])
-                }
-            })
-            const lastMessageDate: Date = this.state.messages[this.state.messages.length - 1]['createdAt'];
-            return (
-                <div className="container">
-                    <Header chatName={'My Chat'} participantsCount={participants.length}
-                            messagesCount={this.state.messages.length}
-                            lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
-                    <MessageList onLike={this.toggleLike} onDelete={this.deleteMessage} onEdit={this.invokeEditionMessage} messages={this.state.messages}/>
-                    <MessageInput onAddMessage={this.addMessage} onEditMessage={this.editMessage} message={this.state.editingMessage} isEdit={this.state.isEdit} />
-                </div>
-            );
+        if (this.state.loading) {
+            return <Preloader />
         }
+
+        const participants: string[] = []
+        this.state.messages.forEach(message => {
+            if (!participants.includes(message['userId'])) {
+                participants.push(message['userId'])
+            }
+        })
+        const lastMessageDate: Date = this.state.messages[this.state.messages.length - 1]['createdAt'];
         return (
-            <></>
-        )
+            <div className="container">
+                <Header chatName={'My Chat'} participantsCount={participants.length}
+                        messagesCount={this.state.messages.length}
+                        lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
+                <MessageList onLike={this.toggleLike} onDelete={this.deleteMessage} onEdit={this.invokeEditionMessage} messages={this.state.messages}/>
+                <MessageInput onAddMessage={this.addMessage} onEditMessage={this.editMessage} message={this.state.editingMessage} isEdit={this.state.isEdit} />
+            </div>
+        );
 
     }
 
