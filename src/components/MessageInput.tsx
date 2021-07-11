@@ -1,25 +1,25 @@
 import React, {Component} from "react";
 import {Button, Form} from "react-bootstrap";
 
-interface MessageInputProps {
+interface IMessageInputProps {
     onAddMessage: (message: string) => void,
     onEditMessage: (message: string) => void,
-    message: string
-    isEdit: boolean
+    text: string
+    isEditing: boolean
 }
 
-interface IState {
-    message: string
+interface IMessageInputState {
+    text: string
     touched: boolean
 }
 
-export class MessageInput extends Component<MessageInputProps, IState> {
+export class MessageInput extends Component<IMessageInputProps, IMessageInputState> {
 
-    constructor(props: MessageInputProps) {
+    constructor(props: IMessageInputProps) {
         super(props);
 
         this.state = {
-            message: '',
+            text: '',
             touched: false
         }
     }
@@ -31,32 +31,42 @@ export class MessageInput extends Component<MessageInputProps, IState> {
                 }
             )
         }
+
         this.setState({
-            message: e.target.value
+            text: e.target.value
         })
     }
 
     handleSubmit = () => {
-        if (this.props.isEdit) {
-            this.props.onEditMessage(this.state.message);
+
+        const {text} = this.state
+
+        if (this.props.isEditing) {
+            this.props.onEditMessage(text);
         } else {
-            this.props.onAddMessage(this.state.message);
+            this.props.onAddMessage(text);
         }
+
         this.setState({
-            message: '',
+            text: '',
             touched: false
         })
     }
 
     render() {
+
+        const {isEditing, text: textFromProps} = this.props
+
+        const {touched, text: textFromState} = this.state
+
         return (
             <div className="message-input">
                 <Form.Control
-                    value={this.props.isEdit && !this.state.touched ? this.props.message : this.state.message}
+                    value={isEditing && !touched ? textFromProps : textFromState}
                     onChange={this.handleChange} className="message-input-text" type="text"
                     placeholder="Message" size="sm"/>
                 <Button onClick={this.handleSubmit} type="submit" className="message-input-button" size="sm">
-                    {this.props.isEdit ? 'Edit' : 'Send'}
+                    {isEditing ? 'Edit' : 'Send'}
                 </Button>
             </div>
         )

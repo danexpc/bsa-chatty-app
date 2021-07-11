@@ -2,7 +2,7 @@ import React from "react";
 import {Card} from "react-bootstrap";
 import {FaThumbsUp} from "react-icons/all";
 
-interface MessageProps {
+interface IMessageProps {
     id: string,
     userId: string,
     avatar: string,
@@ -14,9 +14,7 @@ interface MessageProps {
     onLike: () => void
 }
 
-export const Message: React.FC<MessageProps> = (props) => {
-    const {avatar, user, text, createdAt, liked} = props;
-
+export const Message: React.FC<IMessageProps> = ({avatar, user, text, createdAt, liked, onLike}) => {
     return (
         <Card className="message">
             <Card.Body className="message-body">
@@ -28,7 +26,7 @@ export const Message: React.FC<MessageProps> = (props) => {
                 <Card.Text className="message-text">
                     {text}
                 </Card.Text>
-                <button className={`message-like ${liked ? 'like' : ''}`} onClick={props.onLike}>
+                <button className={`message-like ${liked ? 'like' : ''}`} onClick={onLike}>
                     <FaThumbsUp/>
                 </button>
             </Card.Body>

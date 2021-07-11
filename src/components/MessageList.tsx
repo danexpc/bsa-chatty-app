@@ -4,16 +4,16 @@ import {IMessage} from "../interfaces/message";
 import {OwnMessage} from "./OwnMessage";
 import {getFormattedDate} from "../utils/DateFormatter";
 
-interface MessageListProps {
+interface IMessageListProps {
     messages: IMessage[]
     onLike: (id: string) => void
-    onDelete: (id: string) => void
     onEdit: (id: string, text: string) => void
+    onDelete: (id: string) => void
 }
 
-export const MessageList: React.FC<MessageListProps> = (props) => {
+export const MessageList: React.FC<IMessageListProps> = ({messages, onLike, onEdit, onDelete}) => {
 
-    const renderOutput = prepareMessagesForRender(props.messages, props.onDelete, props.onEdit, props.onLike)
+    const renderOutput = prepareMessagesForRender(messages, onLike, onEdit, onDelete)
 
     return (
         <div className="message-list">
@@ -54,9 +54,9 @@ const convertMessageArrayToMap = (messages: IMessage[]): Map<string, IMessage[]>
 }
 
 const convertMessagesByDayMapToJsx = (map: Map<string, IMessage[]>,
-                                      onDeleteHandler: (id: string) => void,
+                                      onLikeHandler: (id: string) => void,
                                       onEditHandler: (id: string, text: string) => void,
-                                      onLikeHandler: (id: string) => void): JSX.Element[] => {
+                                      onDeleteHandler: (id: string) => void): JSX.Element[] => {
     const renderOutput: JSX.Element[] = [];
 
     map.forEach((messages, day) => {

@@ -2,28 +2,27 @@ import React from "react";
 import {Card} from "react-bootstrap";
 import {FaEdit, FaTrash} from "react-icons/all";
 
-interface OwnMessageProps {
+interface IOwnMessageProps {
     text: string,
     createdAt: string,
-    editedAt?: string,
     onDelete: () => void,
     onEdit: () => void
 }
 
-export const OwnMessage: React.FC<OwnMessageProps> = (props) => {
+export const OwnMessage: React.FC<IOwnMessageProps> = ({text, createdAt, onEdit, onDelete}) => {
     return (
         <Card className="own-message">
             <Card.Body className="own-message-body">
                 <div className="message-metadata d-flex">
-                    <Card.Text className="message-time">{props.createdAt}</Card.Text>
+                    <Card.Text className="message-time">{createdAt}</Card.Text>
                 </div>
                 <Card.Text className="message-text">
-                    {props.text}
+                    {text}
                 </Card.Text>
-                <button className="message-edit" onClick={props.onEdit}>
+                <button className="message-edit" onClick={onEdit}>
                     <FaEdit/>
                 </button>
-                <button className="message-delete" onClick={props.onDelete}>
+                <button className="message-delete" onClick={onDelete}>
                     <FaTrash/>
                 </button>
             </Card.Body>

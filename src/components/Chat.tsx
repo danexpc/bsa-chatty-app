@@ -10,36 +10,35 @@ import {transformService} from "../services/transform.service";
 import {v4 as uuidv4} from "uuid";
 import {Preloader} from "./Preloader";
 
-interface ChatProps {
+interface IChatProps {
     url: string
 }
 
-interface IState {
+interface IChatState {
     messages: IMessage[],
-    isEdit: boolean,
+    isEditing: boolean,
     editingMessage: string,
     editingMessageId: string,
     loading: boolean
 }
 
-
-class Chat extends Component<ChatProps, IState> {
+export default class Chat extends Component<IChatProps, IChatState> {
     apiService: ApiService;
 
-    constructor(props: ChatProps) {
+    constructor(props: IChatProps) {
         super(props);
 
         this.apiService = new ApiService(props.url)
         this.state = {
             messages: [],
-            isEdit: false,
+            isEditing: false,
             editingMessage: '',
             editingMessageId: '',
             loading: true
         }
     }
 
-    componentDidMount() {
+    componentDidMount(): void {
         this.renderMessages();
     }
 
@@ -56,9 +55,10 @@ class Chat extends Component<ChatProps, IState> {
         }
     }
 
-    addMessage = (message: string) => {
-        const newMessages = [...this.state.messages];
-        newMessages.push({
+    addMessage = (message: string): void => {
+        const messages: IMessage[] = [...this.state.messages];
+
+        messages.push({
             id: uuidv4(),
             userId: "6d57a02a-e0f7-4897-bed1-ba2f49796f69",
             avatar: "https://unsplash.it/36/36?gravity=center",
@@ -67,56 +67,60 @@ class Chat extends Component<ChatProps, IState> {
             createdAt: new Date(),
             liked: false
         });
+
         this.setState(
             {
-                messages: newMessages
+                messages
             }
         )
     }
 
-    toggleLike = (id: string) => {
-        let messages = [...this.state.messages];
+    toggleLike = (id: string): void => {
+        let messages: IMessage[] = [...this.state.messages];
+
         const index = messages.findIndex(message => message.id === id);
         if (messages[index]) {
             messages[index].liked = !messages[index]?.liked;
             this.setState({
-                messages: messages
+                messages
             })
         }
     }
 
-    deleteMessage = (id: string) => {
-        let messages = [...this.state.messages];
+    deleteMessage = (id: string): void => {
+        let messages: IMessage[] = [...this.state.messages];
+
         const index = messages.findIndex(message => message.id === id);
         if (messages[index]) {
             messages.splice(index, 1)
             console.log(this.state.messages)
             this.setState({
-                messages: messages
+                messages
             })
         }
     }
 
-    editMessage = (text: string) => {
-        let messages = [...this.state.messages];
+    editMessage = (text: string): void => {
+        let messages: IMessage[] = [...this.state.messages];
+
         const index = messages.findIndex(message => message.id === this.state.editingMessageId);
         if (messages[index]) {
             messages[index].text = text;
             messages[index].editedAt = new Date();
             this.setState({
-                messages: messages,
+                messages,
                 editingMessageId: '',
                 editingMessage: '',
-                isEdit: false
+                isEditing: false
             })
         }
     }
 
-    invokeEditionMessage = (id: string, text: string) => {
+    invokeEditionMessage = (id: string, text: string): void => {
         this.setState({
             editingMessageId: id,
             editingMessage: text,
-            isEdit: true
+            isEditing: true
         })
     }
 
@@ -125,22 +129,21 @@ class Chat extends Component<ChatProps, IState> {
             return <Preloader/>
         }
 
-        const participants: string[] = []
-        this.state.messages.forEach(message => {
-            if (!participants.includes(message['userId'])) {
-                participants.push(message['userId'])
-            }
-        })
-        const lastMessageDate: Date = this.state.messages[this.state.messages.length - 1]['createdAt'];
+        const {messages, editingMessage, isEditing} = this.state
+
+        const numberUniqueParticipants = countUniqueParticipants(messages)
+
+        const lastMessageDate: Date = getLastMessageDate(messages)
+
         return (
             <div className="container">
-                <Header chatName={'My Chat'} participantsCount={participants.length}
-                        messagesCount={this.state.messages.length}
+                <Header chatName={'My Chat'} participantsCount={numberUniqueParticipants}
+                        messagesCount={messages.length}
                         lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
                 <MessageList onLike={this.toggleLike} onDelete={this.deleteMessage} onEdit={this.invokeEditionMessage}
-                             messages={this.state.messages}/>
+                             messages={messages}/>
                 <MessageInput onAddMessage={this.addMessage} onEditMessage={this.editMessage}
-                              message={this.state.editingMessage} isEdit={this.state.isEdit}/>
+                              text={editingMessage} isEditing={isEditing}/>
             </div>
         );
 
@@ -148,4 +151,18 @@ class Chat extends Component<ChatProps, IState> {
 
 }
 
-export default Chat;
+const countUniqueParticipants = (messages: IMessage[]): number => {
+    const participants: string[] = []
+
+    messages.forEach(message => {
+        if (!participants.includes(message['userId'])) {
+            participants.push(message['userId'])
+        }
+    })
+
+    return participants.length;
+}
+
+const getLastMessageDate = (messages: IMessage[]): Date => {
+    return messages[messages.length - 1]['createdAt'];
+}
