@@ -2,6 +2,8 @@ import React from "react";
 import {Card} from "react-bootstrap";
 import {FaThumbsUp} from "react-icons/all";
 
+import "./Message.css"
+
 interface IMessageProps {
     id: string,
     userId: string,

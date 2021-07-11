@@ -1,8 +1,10 @@
 import React from "react";
 import {Message} from "../message/Message";
 import {IMessage} from "../../interfaces/message";
-import {OwnMessage} from "../ownMessage/OwnMessage";
+import {OwnMessage} from "../message/OwnMessage";
 import {getFormattedDate} from "../../utils/DateFormatter";
+
+import "./MessageList.css"
 
 interface IMessageListProps {
     messages: IMessage[]

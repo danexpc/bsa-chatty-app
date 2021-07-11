@@ -1,0 +1,82 @@
+.message {
+    width: max-content;
+    min-width: 30%;
+    border: none;
+}
+
+.message-text {
+    font-size: 14px;
+    margin-bottom: 0.5rem;
+}
+
+.message-time {
+    position: absolute;
+    right: 1.5rem;
+    font-size: 12px;
+
+}
+
+.message-metadata {
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.message-like {
+    font-size: 12px;
+    background-color: #fff;
+    border: none;
+    color: #262626;
+}
+
+.message-user-name {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.message-user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+}
+
+.own-message {
+    position: relative;
+    width: max-content;
+    border: none;
+    min-width: 45%;
+    max-width: 45%;
+    right: -55%;
+    background-color: #e6ebfd;
+
+}
+
+.message-edit {
+    font-size: 12px;
+    background-color: #e6ebfd;
+    border: none;
+    color: #262626;
+}
+
+.message-delete {
+    font-size: 12px;
+    background-color: #e6ebfd;
+    border: none;
+    color: #262626;
+}
+
+.message-edit:hover {
+    color: #635b5b;
+}
+
+.message-delete:hover {
+    color: #6c1515;
+}
+
+.like {
+    color: #c71b1b;;
+}
+
+.message-like:hover {
+    color: #d43a3a;
+}

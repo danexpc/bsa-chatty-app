@@ -2,6 +2,8 @@ import React from "react";
 import {Card} from "react-bootstrap";
 import {FaEdit, FaTrash} from "react-icons/all";
 
+import "./Message.css"
+
 interface IOwnMessageProps {
     text: string,
     createdAt: string,

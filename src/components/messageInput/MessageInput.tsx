@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {Button, Form} from "react-bootstrap";
 
+import "./MessageInput.css"
+
 interface IMessageInputProps {
     onAddMessage: (message: string) => void,
     onEditMessage: (message: string) => void,

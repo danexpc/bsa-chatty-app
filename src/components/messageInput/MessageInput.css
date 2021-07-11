@@ -1,0 +1,22 @@
+.message-input {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.message-input-text:focus {
+    box-shadow: none;
+}
+
+.message-input-button {
+    width: 8rem;
+    background-color: #466afc;
+}
+
+.message-input-button:hover {
+    background-color: #2750ff;
+}
+
+.message-input-button:focus {
+    box-shadow: none;
+}
