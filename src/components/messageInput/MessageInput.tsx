@@ -13,6 +13,7 @@ interface IMessageInputProps {
 interface IMessageInputState {
     text: string
     touched: boolean
+    isWarning: boolean
 }
 
 export class MessageInput extends Component<IMessageInputProps, IMessageInputState> {
@@ -22,7 +23,8 @@ export class MessageInput extends Component<IMessageInputProps, IMessageInputSta
 
         this.state = {
             text: '',
-            touched: false
+            touched: false,
+            isWarning: false
         }
     }
 
@@ -43,6 +45,13 @@ export class MessageInput extends Component<IMessageInputProps, IMessageInputSta
 
         const {text} = this.state
 
+        if (text.trim() === "") {
+            this.setState({
+                isWarning: true
+            })
+            return
+        }
+
         if (this.props.isEditing) {
             this.props.onEditMessage(text);
         } else {
@@ -51,7 +60,8 @@ export class MessageInput extends Component<IMessageInputProps, IMessageInputSta
 
         this.setState({
             text: '',
-            touched: false
+            touched: false,
+            isWarning: false
         })
     }
 
@@ -59,14 +69,14 @@ export class MessageInput extends Component<IMessageInputProps, IMessageInputSta
 
         const {isEditing, text: textFromProps} = this.props
 
-        const {touched, text: textFromState} = this.state
+        const {touched, text: textFromState, isWarning} = this.state
 
         return (
             <div className="message-input">
                 <Form.Control
                     value={isEditing && !touched ? textFromProps : textFromState}
                     onChange={this.handleChange} className="message-input-text" type="text"
-                    placeholder="Message" size="sm"/>
+                    placeholder={isWarning ? "Cannot be empty" : "Message"} size="sm"/>
                 <Button onClick={this.handleSubmit} type="submit" className="message-input-button" size="sm">
                     {isEditing ? 'Edit' : 'Send'}
                 </Button>
