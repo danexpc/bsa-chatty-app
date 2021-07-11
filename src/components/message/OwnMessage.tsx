@@ -1,6 +1,7 @@
 import React from "react";
 import {Card} from "react-bootstrap";
-import {FaEdit, FaTrash} from "react-icons/all";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
 
 import "./Message.css"
 
@@ -22,10 +23,10 @@ export const OwnMessage: React.FC<IOwnMessageProps> = ({text, createdAt, onEdit,
                     {text}
                 </Card.Text>
                 <button className="message-edit" onClick={onEdit}>
-                    <FaEdit/>
+                    <FontAwesomeIcon icon={faEdit}/>
                 </button>
                 <button className="message-delete" onClick={onDelete}>
-                    <FaTrash/>
+                    <FontAwesomeIcon icon={faTrash}/>
                 </button>
             </Card.Body>
         </Card>

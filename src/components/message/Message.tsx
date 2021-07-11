@@ -1,6 +1,7 @@
 import React from "react";
 import {Card} from "react-bootstrap";
-import {FaThumbsUp} from "react-icons/all";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faThumbsUp} from "@fortawesome/free-solid-svg-icons";
 
 import "./Message.css"
 
@@ -29,7 +30,7 @@ export const Message: React.FC<IMessageProps> = ({avatar, user, text, createdAt,
                     {text}
                 </Card.Text>
                 <button className={`message-like ${liked ? 'like' : ''}`} onClick={onLike}>
-                    <FaThumbsUp/>
+                    <FontAwesomeIcon icon={faThumbsUp}/>
                 </button>
             </Card.Body>
         </Card>
