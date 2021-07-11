@@ -10,6 +10,8 @@ import {v4 as uuidv4} from "uuid";
 import {Preloader} from "../preloader/Preloader";
 
 import "./Chat.css"
+import {getUser} from "../../auth/auth";
+import {IUser} from "../../interfaces/user";
 
 interface IChatProps {
     url: string
@@ -59,11 +61,13 @@ export default class Chat extends Component<IChatProps, IChatState> {
     addMessage = (message: string): void => {
         const messages: IMessage[] = [...this.state.messages];
 
+        const user: IUser = getUser();
+
         messages.push({
             id: uuidv4(),
-            userId: "6d57a02a-e0f7-4897-bed1-ba2f49796f69",
+            userId: user.id,
             avatar: "https://unsplash.it/36/36?gravity=center",
-            user: "Dan",
+            user: user.username,
             text: message,
             createdAt: new Date(),
             liked: false

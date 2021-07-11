@@ -1,8 +1,10 @@
 import React from "react";
+
 import {Message} from "../message/Message";
 import {IMessage} from "../../interfaces/message";
 import {OwnMessage} from "../message/OwnMessage";
 import {getFormattedDate} from "../../utils/DateFormatter";
+import {getUser} from "../../auth/auth";
 
 import "./MessageList.css"
 
@@ -66,7 +68,7 @@ const convertMessagesByDayMapToJsx = (map: Map<string, IMessage[]>,
             <div key={day} className="message-divider">{day}</div>
         )
         messages.forEach(message => {
-            if (message.userId === "6d57a02a-e0f7-4897-bed1-ba2f49796f69") {
+            if (message.userId === getUser().id) {
                 renderOutput.push(<OwnMessage key={message.id}
                                               text={message.text}
                                               createdAt={message.createdAt.getHours() + ":" + message.createdAt.getMinutes()}
