@@ -98,7 +98,6 @@ export default class Chat extends Component<IChatProps, IChatState> {
         const index = messages.findIndex(message => message.id === id);
         if (messages[index]) {
             messages.splice(index, 1)
-            console.log(this.state.messages)
             this.setState({
                 messages
             })
