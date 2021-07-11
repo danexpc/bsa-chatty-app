@@ -7,6 +7,8 @@ import {ApiService} from "../services/api.service";
 import {IMessage} from "../interfaces/message";
 import {transformService} from "../services/transform.service";
 
+import { v4 as uuidv4 } from "uuid";
+
 interface ChatProps {
     url: string
 }
@@ -47,8 +49,8 @@ class Chat extends Component<ChatProps, IState> {
     addMessage = (message: string) => {
         const newMessages = this.state.messages;
         newMessages.push({
-            id: "1",
-            userId: "1",
+            id: uuidv4(),
+            userId: uuidv4(),
             avatar: "https://unsplash.it/36/36?gravity=center",
             user: "Dan",
             text: message,
