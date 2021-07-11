@@ -57,7 +57,7 @@ class Chat extends Component<ChatProps, IState> {
     }
 
     addMessage = (message: string) => {
-        const newMessages = this.state.messages;
+        const newMessages = [...this.state.messages];
         newMessages.push({
             id: uuidv4(),
             userId: "6d57a02a-e0f7-4897-bed1-ba2f49796f69",
@@ -75,7 +75,7 @@ class Chat extends Component<ChatProps, IState> {
     }
 
     toggleLike = (id: string) => {
-        let messages = this.state.messages;
+        let messages = [...this.state.messages];
         const index = messages.findIndex(message => message.id === id);
         if (messages[index]) {
             messages[index].liked = !messages[index]?.liked;
@@ -86,20 +86,19 @@ class Chat extends Component<ChatProps, IState> {
     }
 
     deleteMessage = (id: string) => {
-        let messages = this.state.messages;
+        let messages = [...this.state.messages];
         const index = messages.findIndex(message => message.id === id);
         if (messages[index]) {
+            messages.splice(index, 1)
+            console.log(this.state.messages)
             this.setState({
-                messages: [
-                    ...messages.splice(0, index),
-                    ...messages.splice(index+1, messages.length)
-                ]
+                messages: messages
             })
         }
     }
 
     editMessage = (text: string) => {
-        let messages = this.state.messages;
+        let messages = [...this.state.messages];
         const index = messages.findIndex(message => message.id === this.state.editingMessageId);
         if (messages[index]) {
             messages[index].text = text;
