@@ -11,17 +11,21 @@ interface ChatProps {
     url: string
 }
 
-class Chat extends Component<any, any> {
-    state = {
-        messages: []
-    }
+interface IState {
+    messages: IMessage[];
+}
 
+
+class Chat extends Component<ChatProps, IState> {
     apiService: ApiService;
 
     constructor(props: ChatProps) {
         super(props);
 
         this.apiService = new ApiService(props.url)
+        this.state = {
+            messages: []
+        }
     }
 
     componentDidMount() {
@@ -40,6 +44,23 @@ class Chat extends Component<any, any> {
         }
     }
 
+    addMessage = (message: string) => {
+        const newMessages = this.state.messages;
+        newMessages.push({
+            id: "1",
+            userId: "1",
+            avatar: "https://unsplash.it/36/36?gravity=center",
+            user: "Dan",
+            text: message,
+            createdAt: new Date()
+        });
+        this.setState(
+            {
+                messages: newMessages
+            }
+        )
+    }
+
     render() {
         if (this.state.messages.length !== 0) {
             const participants: string[] = []
@@ -51,10 +72,11 @@ class Chat extends Component<any, any> {
             const lastMessageDate: Date = this.state.messages[this.state.messages.length - 1]['createdAt'];
             return (
                 <div className="container">
-                    <Header chatName={'My Chat'} participantsCount={participants.length} messagesCount={this.state.messages.length}
+                    <Header chatName={'My Chat'} participantsCount={participants.length}
+                            messagesCount={this.state.messages.length}
                             lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
                     <MessageList messages={this.state.messages}/>
-                    <MessageInput/>
+                    <MessageInput onAddMessage={this.addMessage}/>
                 </div>
             );
         }
