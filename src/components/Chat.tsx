@@ -14,7 +14,10 @@ interface ChatProps {
 }
 
 interface IState {
-    messages: IMessage[];
+    messages: IMessage[],
+    isEdit: boolean,
+    editingMessage: string,
+    editingMessageId: string
 }
 
 
@@ -26,7 +29,10 @@ class Chat extends Component<ChatProps, IState> {
 
         this.apiService = new ApiService(props.url)
         this.state = {
-            messages: []
+            messages: [],
+            isEdit: false,
+            editingMessage: '',
+            editingMessageId: ''
         }
     }
 
@@ -88,6 +94,29 @@ class Chat extends Component<ChatProps, IState> {
         }
     }
 
+    editMessage = (text: string) => {
+        let messages = this.state.messages;
+        const index = messages.findIndex(message => message.id === this.state.editingMessageId);
+        if (messages[index]) {
+            messages[index].text = text;
+            messages[index].editedAt = new Date();
+            this.setState({
+                messages: messages,
+                editingMessageId: '',
+                editingMessage: '',
+                isEdit: false
+            })
+        }
+    }
+
+    invokeEditionMessage = (id: string, text: string) => {
+        this.setState({
+            editingMessageId: id,
+            editingMessage: text,
+            isEdit: true
+        })
+    }
+
     render() {
         if (this.state.messages.length !== 0) {
             const participants: string[] = []
@@ -102,8 +131,8 @@ class Chat extends Component<ChatProps, IState> {
                     <Header chatName={'My Chat'} participantsCount={participants.length}
                             messagesCount={this.state.messages.length}
                             lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
-                    <MessageList onLike={this.toggleLike} onDelete={this.deleteMessage} messages={this.state.messages}/>
-                    <MessageInput onAddMessage={this.addMessage}/>
+                    <MessageList onLike={this.toggleLike} onDelete={this.deleteMessage} onEdit={this.invokeEditionMessage} messages={this.state.messages}/>
+                    <MessageInput onAddMessage={this.addMessage} onEditMessage={this.editMessage} message={this.state.editingMessage} isEdit={this.state.isEdit} />
                 </div>
             );
         }

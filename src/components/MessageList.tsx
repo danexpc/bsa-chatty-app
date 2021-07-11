@@ -7,6 +7,7 @@ interface MessageListProps {
     messages: IMessage[]
     onLike: (id: string) => void
     onDelete: (id: string) => void
+    onEdit: (id: string, text: string) => void
 }
 
 export const MessageList: React.FC<MessageListProps> = (props) => {
@@ -19,7 +20,8 @@ export const MessageList: React.FC<MessageListProps> = (props) => {
                         return <OwnMessage key={message.id}
                                         text={message.text}
                                         createdAt={message.createdAt.getHours() + ":" + message.createdAt.getMinutes()}
-                                        onDelete={() => props.onDelete(message.id)}/>
+                                        onDelete={() => props.onDelete(message.id)}
+                                        onEdit={() => props.onEdit(message.id, message.text)}/>
                     } else {
                         return <Message key={message.id}
                                         id={message.id} userId={message.userId} avatar={message.avatar} user={message.user}

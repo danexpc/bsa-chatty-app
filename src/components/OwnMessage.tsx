@@ -5,8 +5,9 @@ import {FaEdit, FaTrash} from "react-icons/all";
 interface OwnMessageProps {
     text: string,
     createdAt: string,
-    editedAt?: string
-    onDelete: () => void
+    editedAt?: string,
+    onDelete: () => void,
+    onEdit: () => void
 }
 
 export const OwnMessage: React.FC<OwnMessageProps> = (props) => {
@@ -19,7 +20,7 @@ export const OwnMessage: React.FC<OwnMessageProps> = (props) => {
                 <Card.Text className="message-text">
                     {props.text}
                 </Card.Text>
-                <button className="message-edit">
+                <button className="message-edit" onClick={props.onEdit}>
                     <FaEdit />
                 </button>
                 <button className="message-delete" onClick={props.onDelete}>
