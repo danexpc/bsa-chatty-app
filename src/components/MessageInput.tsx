@@ -25,11 +25,18 @@ export class MessageInput extends Component<MessageInputProps, IState> {
             })
     }
 
+    handleSubmit = () => {
+        this.props.onAddMessage(this.state.message);
+        this.setState({
+            message: ''
+        })
+    }
+
     render() {
         return (
             <div className="message-input">
                 <Form.Control value={this.state.message} onChange={this.handleChange} className="message-input-text" type="text" placeholder="Message" size="sm"/>
-                <Button onClick={() => this.props.onAddMessage(this.state.message)} type="submit" className="message-input-button" size="sm">
+                <Button onClick={this.handleSubmit} type="submit" className="message-input-button" size="sm">
                     Send
                 </Button>
             </div>

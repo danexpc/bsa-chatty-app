@@ -50,7 +50,7 @@ class Chat extends Component<ChatProps, IState> {
         const newMessages = this.state.messages;
         newMessages.push({
             id: uuidv4(),
-            userId: uuidv4(),
+            userId: "6d57a02a-e0f7-4897-bed1-ba2f49796f69",
             avatar: "https://unsplash.it/36/36?gravity=center",
             user: "Dan",
             text: message,
@@ -67,8 +67,8 @@ class Chat extends Component<ChatProps, IState> {
         if (this.state.messages.length !== 0) {
             const participants: string[] = []
             this.state.messages.forEach(message => {
-                if (!participants.includes(message['user'])) {
-                    participants.push(message['user'])
+                if (!participants.includes(message['userId'])) {
+                    participants.push(message['userId'])
                 }
             })
             const lastMessageDate: Date = this.state.messages[this.state.messages.length - 1]['createdAt'];
