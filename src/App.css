@@ -93,7 +93,9 @@ body {
     position: relative;
     width: max-content;
     border: none;
-    right: -49.7%;
+    min-width: 45%;
+    max-width: 45%;
+    right: -55%;
     background-color: #e6ebfd;
 
 }

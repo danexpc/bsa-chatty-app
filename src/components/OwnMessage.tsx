@@ -3,17 +3,20 @@ import {Card} from "react-bootstrap";
 import {FaEdit, FaTrash} from "react-icons/all";
 
 interface OwnMessageProps {
+    text: string,
+    createdAt: string,
+    editedAt?: string
 }
 
-export const OwnMessage: React.FC<OwnMessageProps> = () => {
+export const OwnMessage: React.FC<OwnMessageProps> = (props) => {
     return (
         <Card className="own-message">
             <Card.Body className="own-message-body">
                 <div className="message-metadata d-flex">
-                    <Card.Text className="message-time">14:32</Card.Text>
+                    <Card.Text className="message-time">{props.createdAt}</Card.Text>
                 </div>
                 <Card.Text className="message-text">
-                    With supporting text below as a natural lead-in to additional content.
+                    {props.text}
                 </Card.Text>
                 <button className="message-edit">
                     <FaEdit />
