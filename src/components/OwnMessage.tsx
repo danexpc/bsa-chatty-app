@@ -6,6 +6,7 @@ interface OwnMessageProps {
     text: string,
     createdAt: string,
     editedAt?: string
+    onDelete: () => void
 }
 
 export const OwnMessage: React.FC<OwnMessageProps> = (props) => {
@@ -21,7 +22,7 @@ export const OwnMessage: React.FC<OwnMessageProps> = (props) => {
                 <button className="message-edit">
                     <FaEdit />
                 </button>
-                <button className="message-delete">
+                <button className="message-delete" onClick={props.onDelete}>
                     <FaTrash />
                 </button>
             </Card.Body>

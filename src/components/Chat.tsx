@@ -75,6 +75,19 @@ class Chat extends Component<ChatProps, IState> {
         }
     }
 
+    deleteMessage = (id: string) => {
+        let messages = this.state.messages;
+        const index = messages.findIndex(message => message.id === id);
+        if (messages[index]) {
+            this.setState({
+                messages: [
+                    ...messages.splice(0, index),
+                    ...messages.splice(index+1, messages.length)
+                ]
+            })
+        }
+    }
+
     render() {
         if (this.state.messages.length !== 0) {
             const participants: string[] = []
@@ -89,7 +102,7 @@ class Chat extends Component<ChatProps, IState> {
                     <Header chatName={'My Chat'} participantsCount={participants.length}
                             messagesCount={this.state.messages.length}
                             lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
-                    <MessageList onLike={this.toggleLike} messages={this.state.messages}/>
+                    <MessageList onLike={this.toggleLike} onDelete={this.deleteMessage} messages={this.state.messages}/>
                     <MessageInput onAddMessage={this.addMessage}/>
                 </div>
             );

@@ -6,6 +6,7 @@ import {OwnMessage} from "./OwnMessage";
 interface MessageListProps {
     messages: IMessage[]
     onLike: (id: string) => void
+    onDelete: (id: string) => void
 }
 
 export const MessageList: React.FC<MessageListProps> = (props) => {
@@ -17,7 +18,8 @@ export const MessageList: React.FC<MessageListProps> = (props) => {
                     if (message.userId === "6d57a02a-e0f7-4897-bed1-ba2f49796f69") {
                         return <OwnMessage key={message.id}
                                         text={message.text}
-                                        createdAt={message.createdAt.getHours() + ":" + message.createdAt.getMinutes()}/>
+                                        createdAt={message.createdAt.getHours() + ":" + message.createdAt.getMinutes()}
+                                        onDelete={() => props.onDelete(message.id)}/>
                     } else {
                         return <Message key={message.id}
                                         id={message.id} userId={message.userId} avatar={message.avatar} user={message.user}
