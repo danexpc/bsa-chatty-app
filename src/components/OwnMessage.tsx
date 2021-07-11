@@ -21,10 +21,10 @@ export const OwnMessage: React.FC<OwnMessageProps> = (props) => {
                     {props.text}
                 </Card.Text>
                 <button className="message-edit" onClick={props.onEdit}>
-                    <FaEdit />
+                    <FaEdit/>
                 </button>
                 <button className="message-delete" onClick={props.onDelete}>
-                    <FaTrash />
+                    <FaTrash/>
                 </button>
             </Card.Body>
         </Card>

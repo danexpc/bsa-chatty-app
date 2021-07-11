@@ -21,15 +21,15 @@ export const Message: React.FC<MessageProps> = (props) => {
         <Card className="message">
             <Card.Body className="message-body">
                 <div className="message-metadata d-flex">
-                    <Card.Img src={avatar} className="message-user-avatar" />
+                    <Card.Img src={avatar} className="message-user-avatar"/>
                     <Card.Title className="message-user-name">{user}</Card.Title>
                     <Card.Text className="message-time">{createdAt}</Card.Text>
                 </div>
                 <Card.Text className="message-text">
                     {text}
                 </Card.Text>
-                <button className={`message-like ${liked ? 'like' :  ''}`} onClick={props.onLike}>
-                    <FaThumbsUp />
+                <button className={`message-like ${liked ? 'like' : ''}`} onClick={props.onLike}>
+                    <FaThumbsUp/>
                 </button>
             </Card.Body>
         </Card>

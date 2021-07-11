@@ -7,7 +7,7 @@ import {ApiService} from "../services/api.service";
 import {IMessage} from "../interfaces/message";
 import {transformService} from "../services/transform.service";
 
-import { v4 as uuidv4 } from "uuid";
+import {v4 as uuidv4} from "uuid";
 import {Preloader} from "./Preloader";
 
 interface ChatProps {
@@ -122,7 +122,7 @@ class Chat extends Component<ChatProps, IState> {
 
     render() {
         if (this.state.loading) {
-            return <Preloader />
+            return <Preloader/>
         }
 
         const participants: string[] = []
@@ -137,8 +137,10 @@ class Chat extends Component<ChatProps, IState> {
                 <Header chatName={'My Chat'} participantsCount={participants.length}
                         messagesCount={this.state.messages.length}
                         lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
-                <MessageList onLike={this.toggleLike} onDelete={this.deleteMessage} onEdit={this.invokeEditionMessage} messages={this.state.messages}/>
-                <MessageInput onAddMessage={this.addMessage} onEditMessage={this.editMessage} message={this.state.editingMessage} isEdit={this.state.isEdit} />
+                <MessageList onLike={this.toggleLike} onDelete={this.deleteMessage} onEdit={this.invokeEditionMessage}
+                             messages={this.state.messages}/>
+                <MessageInput onAddMessage={this.addMessage} onEditMessage={this.editMessage}
+                              message={this.state.editingMessage} isEdit={this.state.isEdit}/>
             </div>
         );
 
