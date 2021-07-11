@@ -39,7 +39,7 @@ class App extends Component<any, any> {
             const lastMessageDate: Date = this.state.messages[this.state.messages.length - 1]['createdAt'];
             return (
                 <div className="container">
-                    <Header participantsCount={participants.length} messagesCount={this.state.messages.length}
+                    <Header chatName={'My Chat'} participantsCount={participants.length} messagesCount={this.state.messages.length}
                             lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
                     <MessageList messages={this.state.messages}/>
                     <MessageInput/>
