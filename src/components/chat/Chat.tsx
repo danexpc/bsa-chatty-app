@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
+import {v4 as uuidv4} from "uuid";
+
 import {Header} from "../header/Header";
 import {MessageList} from "../messageList/MessageList";
 import {MessageInput} from "../messageInput/MessageInput";
 import {ApiService} from "../../services/api.service";
 import {IMessage} from "../../interfaces/message";
 import {transformService} from "../../services/transform.service";
-
-import {v4 as uuidv4} from "uuid";
 import {Preloader} from "../preloader/Preloader";
-
-import "./Chat.css"
 import {getUser} from "../../auth/auth";
 import {IUser} from "../../interfaces/user";
+
+import "./Chat.css"
 
 interface IChatProps {
     url: string
