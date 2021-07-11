@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Chat from './components/chat/Chat';
+import Chat from './bsa';
 
 ReactDOM.render(
     <React.StrictMode>
