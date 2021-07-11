@@ -20,3 +20,7 @@
 .message-input-button:focus {
     box-shadow: none;
 }
+
+.warning::placeholder {
+    color: #c71b1b;
+}

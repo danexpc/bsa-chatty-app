@@ -75,7 +75,7 @@ export class MessageInput extends Component<IMessageInputProps, IMessageInputSta
             <div className="message-input">
                 <Form.Control
                     value={isEditing && !touched ? textFromProps : textFromState}
-                    onChange={this.handleChange} className="message-input-text" type="text"
+                    onChange={this.handleChange} className={"message-input-text " + (isWarning ? "warning" : "")} type="text"
                     placeholder={isWarning ? "Cannot be empty" : "Message"} size="sm"/>
                 <Button onClick={this.handleSubmit} type="submit" className="message-input-button" size="sm">
                     {isEditing ? 'Edit' : 'Send'}
