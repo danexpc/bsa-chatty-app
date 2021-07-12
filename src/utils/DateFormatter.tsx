@@ -18,3 +18,10 @@ export const getFormattedDate = (date: Date): string => {
         month: 'long'
     }).format(date)
 }
+
+export const getFormattedTimeForMessage = (date: Date): string => {
+    return new Intl.DateTimeFormat('en-GB', {
+        hour: "2-digit",
+        minute: "2-digit"
+    }).format(date)
+}

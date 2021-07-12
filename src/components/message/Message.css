@@ -12,7 +12,7 @@
 }
 
 .message-text {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 0.5rem;
     font-weight: 300;
 }
@@ -20,7 +20,7 @@
 .message-time {
     position: absolute;
     right: 1.5rem;
-    font-size: 12px;
+    font-size: 14px;
     color: #1a1a1a;
     font-weight: 300;
 }
@@ -32,14 +32,14 @@
 }
 
 .message-like {
-    font-size: 12px;
+    font-size: 14px;
     background-color: #fff;
     border: none;
     color: #262626;
 }
 
 .message-user-name {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 0;
     font-weight: 500;
 }
@@ -60,15 +60,20 @@
     background-color: #fffef8;
 }
 
+.own-message-edit-status {
+    font-size: 14px;
+    font-weight: 300;
+}
+
 .message-edit {
-    font-size: 12px;
+    font-size: 14px;
     background-color: #fffef8;
     border: none;
     color: #262626;
 }
 
 .message-delete {
-    font-size: 12px;
+    font-size: 14px;
     background-color: #fffef8;
     border: none;
     color: #262626;

@@ -1,9 +1,10 @@
 .header-users-count, .header-messages-count, .header-last-message-date {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 300;
     color: #1a1a1a !important;
 }
 
 .header-title {
     color: #466afc !important;
+    font-size: 32px;
 }

@@ -12,7 +12,7 @@ interface IHeaderProps {
 
 export const Header: React.FC<IHeaderProps> = ({chatName, participantsCount, messagesCount, lastMessageDate}) => {
     return (
-        <Navbar className="header">
+        <Navbar className="header mt-5">
             <Container className="align-items-end">
                 <Navbar.Brand href="#home" className="mr-5 header-title">{chatName}</Navbar.Brand>
                 <Navbar.Collapse className="justify-content-start">

@@ -3,7 +3,7 @@ import React from "react";
 import {Message} from "../message/Message";
 import {IMessage} from "../../interfaces/message";
 import {OwnMessage} from "../message/OwnMessage";
-import {getFormattedDate} from "../../utils/DateFormatter";
+import {getFormattedDate, getFormattedTimeForMessage} from "../../utils/DateFormatter";
 import {getUser} from "../../auth/auth";
 
 import "./MessageList.css"
@@ -73,7 +73,8 @@ const convertMessagesByDayMapToJsx = (map: Map<string, IMessage[]>,
                                               text={message.text}
                                               avatar={message.avatar}
                                               user={message.user}
-                                              createdAt={message.createdAt.getHours() + ":" + message.createdAt.getMinutes()}
+                                              editedAt={message.editedAt}
+                                              createdAt={getFormattedTimeForMessage(message.createdAt)}
                                               onDelete={() => onDeleteHandler(message.id)}
                                               onEdit={() => onEditHandler(message.id, message.text)}/>)
             } else {
@@ -81,7 +82,7 @@ const convertMessagesByDayMapToJsx = (map: Map<string, IMessage[]>,
                                            id={message.id} userId={message.userId} avatar={message.avatar}
                                            user={message.user}
                                            text={message.text}
-                                           createdAt={message.createdAt.getHours() + ":" + message.createdAt.getMinutes()}
+                                           createdAt={getFormattedTimeForMessage(message.createdAt)}
                                            liked={message.liked}
                                            onLike={() => onLikeHandler(message.id)}/>)
             }

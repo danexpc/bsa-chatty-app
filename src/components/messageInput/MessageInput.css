@@ -4,6 +4,11 @@
     margin-bottom: 2rem;
 }
 
+.message-input-text {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
 .message-input-text:focus {
     box-shadow: none;
 }
@@ -11,6 +16,8 @@
 .message-input-button {
     width: 8rem;
     background-color: #466afc;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
 }
 
 .message-input-button:hover {
