@@ -12,6 +12,7 @@ import {getUser} from "../../auth/auth";
 import {IUser} from "../../interfaces/user";
 
 import "./Chat.css"
+import {getFormattedDateForLastMessage} from "../../utils/DateFormatter";
 
 interface IChatProps {
     url: string
@@ -143,7 +144,7 @@ export default class Chat extends Component<IChatProps, IChatState> {
             <div className="chat container">
                 <Header chatName={'My Chat'} participantsCount={numberUniqueParticipants}
                         messagesCount={messages.length}
-                        lastMessageDate={`${lastMessageDate.toLocaleDateString()} ${lastMessageDate.getHours()}:${lastMessageDate.getMinutes()}`}/>
+                        lastMessageDate={getFormattedDateForLastMessage(lastMessageDate)}/>
                 <MessageList onLike={this.toggleLike} onDelete={this.deleteMessage} onEdit={this.invokeEditionMessage}
                              messages={messages}/>
                 <MessageInput onAddMessage={this.addMessage} onEditMessage={this.editMessage}

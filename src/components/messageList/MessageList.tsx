@@ -3,7 +3,7 @@ import React from "react";
 import {Message} from "../message/Message";
 import {IMessage} from "../../interfaces/message";
 import {OwnMessage} from "../message/OwnMessage";
-import {getFormattedDate, getFormattedTimeForMessage} from "../../utils/DateFormatter";
+import {getFormattedDateForDivider, getFormattedTimeForMessage} from "../../utils/DateFormatter";
 import {getUser} from "../../auth/auth";
 
 import "./MessageList.css"
@@ -41,7 +41,7 @@ const convertMessageArrayToMap = (messages: IMessage[]): Map<string, IMessage[]>
     let messagesByDay: Map<string, IMessage[]> = new Map<string, IMessage[]>();
 
     messages.forEach(message => {
-        const day = getFormattedDate(message.createdAt)
+        const day = getFormattedDateForDivider(message.createdAt)
 
         if (messagesByDay.has(day)) {
             let messages = messagesByDay.get(day);
