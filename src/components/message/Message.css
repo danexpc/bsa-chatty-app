@@ -1,19 +1,28 @@
 .message {
     width: max-content;
     min-width: 30%;
+    max-width: 50%;
     border: none;
+    background-color: #FFFFFF;
+    transition: box-shadow .3s;
+}
+
+.message:hover, .own-message:hover {
+    box-shadow: 0 0 9px rgba(106, 106, 106, 0.2);
 }
 
 .message-text {
     font-size: 14px;
     margin-bottom: 0.5rem;
+    font-weight: 300;
 }
 
 .message-time {
     position: absolute;
     right: 1.5rem;
     font-size: 12px;
-
+    color: #1a1a1a;
+    font-weight: 300;
 }
 
 .message-metadata {
@@ -30,8 +39,9 @@
 }
 
 .message-user-name {
-    font-size: 16px;
+    font-size: 14px;
     margin-bottom: 0;
+    font-weight: 500;
 }
 
 .message-user-avatar {
@@ -47,20 +57,19 @@
     min-width: 45%;
     max-width: 45%;
     right: -55%;
-    background-color: #e6ebfd;
-
+    background-color: #fffef8;
 }
 
 .message-edit {
     font-size: 12px;
-    background-color: #e6ebfd;
+    background-color: #fffef8;
     border: none;
     color: #262626;
 }
 
 .message-delete {
     font-size: 12px;
-    background-color: #e6ebfd;
+    background-color: #fffef8;
     border: none;
     color: #262626;
 }
@@ -70,7 +79,7 @@
 }
 
 .message-delete:hover {
-    color: #6c1515;
+    color: #635b5b;
 }
 
 .like {

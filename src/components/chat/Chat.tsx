@@ -66,7 +66,7 @@ export default class Chat extends Component<IChatProps, IChatState> {
         messages.push({
             id: uuidv4(),
             userId: user.id,
-            avatar: "https://unsplash.it/36/36?gravity=center",
+            avatar: user.avatar,
             user: user.username,
             text: message,
             createdAt: new Date(),

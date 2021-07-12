@@ -22,5 +22,6 @@
 }
 
 .warning::placeholder {
-    color: #c71b1b;
+    color: #ea6a6a;
+    font-weight: 200;
 }

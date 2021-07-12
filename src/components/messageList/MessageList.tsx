@@ -71,6 +71,8 @@ const convertMessagesByDayMapToJsx = (map: Map<string, IMessage[]>,
             if (message.userId === getUser().id) {
                 renderOutput.push(<OwnMessage key={message.id}
                                               text={message.text}
+                                              avatar={message.avatar}
+                                              user={message.user}
                                               createdAt={message.createdAt.getHours() + ":" + message.createdAt.getMinutes()}
                                               onDelete={() => onDeleteHandler(message.id)}
                                               onEdit={() => onEditHandler(message.id, message.text)}/>)
